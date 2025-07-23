@@ -1,133 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>#000000</title>
-    <link type="image/x-icon" rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHklEQVQ4T2NkYGD4z0ABYBw1gGE0DBhGw4BhWIQBAE5OEAELnjVHAAAAAElFTkSuQmCC">
+    <link type="image/x-icon" rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHklEQVQ4T2NkYGD4z0ABYBw1gGE0DBhGw4BhWIQBAE5OEAELnjVHAAAAAElFTkSuQmCC" />
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <style>
-        :root {
-            --color: #000000;
-            --color-transparent: #00000022;
-        }
-
-        ::selection {
-            background: var(--color-transparent);
-        }
-
-        html,
-        body {
-            background: var(--color);
-            height: 100%;
-            margin: 0;
-        }
-
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        #color {
-            background: white;
-            color: var(--color);
-            font-size: 2.5rem;
-            font-weight: 300;
-            padding: 2.25rem 3rem;
-            font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
-            cursor: text;
-        }
+      /*
+            Reset based on https://www.joshwcomeau.com/css/custom-css-reset/
+        */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      * {
+        margin: 0;
+      }
+      body {
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        font-family: "optima", Arial, Helvetica, sans-serif;
+      }
+      img,
+      picture,
+      video,
+      canvas,
+      svg {
+        display: block;
+      }
+      input,
+      button,
+      textarea,
+      select {
+        font: inherit;
+      }
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        overflow-wrap: break-word;
+      }
+      #root,
+      #__next {
+        isolation: isolate;
+      }
     </style>
-</head>
+    <style>
+      .main {
+        margin: 0 auto;
+        max-width: 80%;
+      }
 
-<body>
-    <p id="color">#000000</p>
-    <script>
-        function randomInt(min, max) {
-            return Math.floor(Math.random() * (max - min + 1) + min);
-        }
+      .slideshow {
+        max-width: 300px;
+        height: auto;
+      }
 
-        function hslToHex(h, s, l) {
-            h /= 360;
-            s /= 100;
-            l /= 100;
-            var r = void 0,
-                g = void 0,
-                b = void 0;
-            if (s === 0) {
-                r = g = b = l; // achromatic
-            } else {
-                var hue2rgb = function hue2rgb(p, q, t) {
-                    if (t < 0) t += 1;
-                    if (t > 1) t -= 1;
-                    if (t < 1 / 6) return p + (q - p) * 6 * t;
-                    if (t < 1 / 2) return q;
-                    if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-                    return p;
-                };
-                var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-                var p = 2 * l - q;
-                r = hue2rgb(p, q, h + 1 / 3);
-                g = hue2rgb(p, q, h);
-                b = hue2rgb(p, q, h - 1 / 3);
-            }
-            var toHex = function toHex(x) {
-                var hex = Math.round(x * 255).toString(16);
-                return hex.length === 1 ? '0' + hex : hex;
-            };
-            return '#' + toHex(r) + toHex(g) + toHex(b);
-        }
+      .footer {
+        border-top: 1px solid #999;
+        padding: 20px 30px;
 
-        window.onload = function () {
-            let stopProp = function (ev) {
-                ev.stopPropagation();
-            }
+        margin-top: 50px;
+      }
 
-            var colorElement = document.getElementById("color");
-            colorElement.addEventListener("click", stopProp, false);
-            colorElement.addEventListener("mousedown", stopProp, false);
+      .nav {
+        display: flex;
+        align-items: center;
 
-            var setFavicon = function (hex) {
-                var canvas = document.createElement('canvas');
-                canvas.width = 16;
-                canvas.height = 16;
-                var ctx = canvas.getContext('2d');
-                ctx.fillStyle = hex;
-                ctx.fillRect(0, 0, 16, 16);
-                document.getElementsByTagName('link')[0].href = canvas.toDataURL("image/x-icon");
-            }
+        list-style: none;
+      }
 
-            var setRandomColor = function setRandomColor() {
-                var h = void 0,
-                    s = void 0,
-                    l = void 0;
+      .nav li {
+        margin-right: 20px;
+      }
 
-                h = randomInt(0, 359);
-                s = randomInt(55, 75);
-                l = randomInt(40, 60);
+      .photos {
+        border-bottom: 1px solid #e7e6e6;
+      }
 
-                document.documentElement.style.setProperty('--color', 'hsl(' + h + ', ' + s + '%, ' + l + '%)');
-                var hex = hslToHex(h, s, l);
-                document.title = hex;
-                colorElement.innerHTML = hex;
-                document.documentElement.style.setProperty('--color-transparent', hex + '22');
+      .photos:last-child {
+        border-bottom: none;
+      }
 
-                setFavicon(hex);
-            };
-            setRandomColor();
+      .photos header {
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
 
-            var body = document.getElementsByTagName("body")[0];
-            body.addEventListener("mousedown", function (ev) {
-                ev.preventDefault();
-            });
-            body.addEventListener("click", function () {
-                setRandomColor();
-            }, false);
-        };
-    </script>
-</body>
+      .photos header h1 {
+        margin: 0;
+        font-weight: 400;
+        font-size: 36px;
+      }
 
+      .image-grid {
+        display: grid;
+
+        gap: 55px;
+        margin-bottom: 55px;
+      }
+
+      .image-grid img {
+        border-radius: 3px;
+        object-fit: cover;
+      }
+
+      /* .image-grid img {
+        width: 100%;
+        height: auto;
+      } */
+
+      .portrait-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+
+      .landscape-grid {
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      }
+
+      .portrait-grid img {
+        height: 400px;
+        width: 100%;
+      }
+
+      .landscape-grid img {
+        height: 300px;
+        width: 100%;
+      }
+
+      h1 {
+        margin-bottom: 20px; // ideally relative units
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="main">
+      <!-- <div class="slideshow">
+            <img src="images/slideshow/_DSC1226.jpg" />
+            <img src="images/slideshow/DSC_0002.jpg" />
+        </div> -->
+
+      <section class="photos">
+        <header>
+          <h1>Landscapes</h1>
+        </header>
+        <div class="image-grid landscape-grid">
+          <img src="images/landscapes/DSC_1273.jpg" alt="sunrise in the desert" />
+          <img src="images/landscapes/DSC_1049.jpg" alt="desert mountains with clouds" />
+          <img src="images/landscapes/_DSC0016.jpg" alt="a green hill with california poppies" />
+          <img src="images/landscapes/_DSC1226.jpg" alt="heavenly ski resort after a storm" />
+          <img src="images/landscapes/_DSC1720.jpg" alt="shark fin cove at sunset" />
+          <img src="images/landscapes/_DSC2855.jpg" alt="red rocks state park" />
+          <img src="images/landscapes/_DSC2874.jpg" alt="starburst sun at red rocks state park" />
+          <img src="images/landscapes/_DSC3328.jpg" alt="zion national park at sunrise" />
+          <img src="images/landscapes/_DSC3786.jpg" alt="closeup of pele's well in Hawaii" />
+          <img src="images/landscapes/_DSC3798.jpg" alt="wide shot pele's well in Hawaii" />
+          <img src="images/landscapes/_DSC4431.jpg" alt="sedona mountains at sunset" />
+          <img src="images/landscapes/_DSC4585.jpg" alt="half dome and el capitan after a snowstorm" />
+          <img src="images/landscapes/_DSC4614.jpg" alt="yosemite valley in the winter" />
+          <img src="images/landscapes/_DSC7798.jpg" alt="a crashing wave" />
+          <img src="images/landscapes/_DSC9681.jpg" alt="Lake Tahoe with snow-capped mountains" />
+          <img src="images/landscapes/DSC_0002.jpg" alt="palm tree silouette with Hawaiian sunset" />
+          <img src="images/landscapes/DSC_0033.jpg" alt="Dew drop on leaf" />
+          <img src="images/landscapes/DSC_0119.jpg" alt="Reflection of hot air balloon over a stream" />
+          <img src="images/landscapes/DSC_0128.jpg" alt="Close up of a rose" />
+        </div>
+        <div class="image-grid portrait-grid">
+          <img src="images/landscapes/_DSC1262.jpg" alt="macro shot of dripping icicle" />
+          <img src="images/landscapes/_DSC1984.jpg" alt="sunset through a tree" />
+          <img src="images/landscapes/_DSC2027.jpg" alt="purple flowers with dew drops" />
+          <img src="images/landscapes/_DSC2145.jpg" alt="road in Hawaii" />
+          <img src="images/landscapes/_DSC2764.jpg" alt="sequoia tree" />
+          <img src="images/landscapes/_DSC4264.jpg" alt="Hawaii sunset over the ocean" />
+          <img src="images/landscapes/_DSC4433.jpg" alt="portrait of sedona mountains at sunset" />
+          <img src="images/landscapes/_DSC4617.jpg" alt="bridelveil falls with snow" />
+          <img src="images/landscapes/_DSC4812.jpg" alt="greyscale of yosemite falls in winter" />
+          <img src="images/landscapes/_DSC5342.jpg" alt="a succulent growing from a rock at Pinnacles" />
+          <img src="images/landscapes/_DSC5369.jpg" alt="a church lit up by the sun in Sedona" />
+          <img src="images/landscapes/_DSC9628.jpg" alt="Lake Tahoe with rocks and mountains" />
+          <img src="images/landscapes/DSC_0441.jpg" alt="flower" />
+          <img src="images/landscapes/DSC_1127.jpg" alt="joshua tree at sunset" />
+          <img src="images/landscapes/IMG_8669.jpg" alt="Hot air balloon over Napa" />
+        </div>
+      </section>
+      <section class="photos">
+        <header>
+          <h1>Animals</h1>
+        </header>
+        <div class="image-grid landscape-grid">
+          <img src="images/animals/_DSC2252.jpg" alt="turtle" />
+          <img src="images/animals/_DSC3862.jpg" alt="gecko" />
+          <img src="images/animals/_DSC4019.jpg" alt="baby eel" />
+          <img src="images/animals/_DSC9663.jpg" alt="gecko" />
+          <img src="images/animals/DSC_0046.jpg" alt="bee" />
+          <img src="images/animals/DSC_0438.jpg" alt="elk" />
+        </div>
+        <div class="image-grid portrait-grid">
+          <img src="images/animals/_DSC3040.jpg" alt="hermit crab" />
+          <img src="images/animals/DSC_0022-2.jpg" alt="gecko and leaf" />
+          <img src="images/animals/DSC_0121.jpg" alt="squirrel eating an acorn" />
+        </div>
+      </section>
+      <section class="photos">
+        <header>
+          <h1>Birds</h1>
+        </header>
+        <div class="image-grid landscape-grid">
+          <img src="images/birds/_DSC0245.jpg" alt="bushtit" />
+          <img src="images/birds/_DSC3900.jpg" alt="wilsons warbler" />
+          <img src="images/birds/_DSC7413.jpg" alt="baby owls" />
+          <img src="images/birds/_DSC9503.jpg" alt="birds looking at reflection in car" />
+          <img src="images/birds/DSC_0162.jpg" alt="stellars jay" />
+          <img src="images/birds/DSC_0234.jpg" alt="bird in water" />
+          <img src="images/birds/DSC_0505.jpg" alt="robin drinking water" />
+        </div>
+        <div class="image-grid portrait-grid">
+          <img src="images/birds/_DSC2290.jpg" alt="yellow bird on lava rock" />
+          <img src="images/birds/_DSC3004.jpg" alt="pelicans diving" />
+          <img src="images/birds/_DSC3358.jpg" alt="mountain bluebird" />
+          <img src="images/birds/_DSC3650.jpg" alt="hummingbird" />
+          <img src="images/birds/_DSC5271.jpg" alt="cardinal" />
+          <img src="images/birds/_DSC5499.jpg" alt="burrowing owl" />
+          <img src="images/birds/_DSC5686.jpg" alt="great horned owl" />
+          <img src="images/birds/_DSC6248.jpg" alt="acorn woodpecker" />
+          <img src="images/birds/DSC_0066.jpg" alt="acorn woodpecker" />
+          <img src="images/birds/_DSC9646.jpg" alt="bird with red head" />
+          <img src="images/birds/_DSC9431.jpg" alt="java bird" />
+          <img src="images/birds/_DSC9293.jpg" alt="colorful birds in puerto rico" />
+          <img src="images/birds/DSC_0358.jpg" alt="northern flicker" />
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      David Drabik
+
+      <nav class="nav">
+        <li><a href="/portfolio.html">Portfolio</a></li>
+        <li><a href="pages/about.html">About</a></li>
+        <li><a href="pages/contact.html">Contact</a></li>
+      </nav>
+    </footer>
+  </body>
 </html>

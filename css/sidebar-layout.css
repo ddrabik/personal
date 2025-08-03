@@ -1,0 +1,187 @@
+/* Dark Left Sidebar Layout - Inspired by Matt Kloskowski Photography */
+
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Main layout container */
+.layout-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 280px;
+    background-color: #1a1a1a;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    padding: 0;
+    z-index: 1000;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-content {
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Logo section */
+.sidebar-logo {
+    padding: 0 2rem 2rem 2rem;
+    border-bottom: 1px solid #333;
+    margin-bottom: 2rem;
+}
+
+.sidebar-logo h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+}
+
+/* Navigation styles */
+.sidebar-nav {
+    flex: 1;
+    padding: 0 2rem;
+    list-style: none;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-nav a {
+    display: block;
+    color: #cccccc;
+    text-decoration: none;
+    padding: 0.75rem 0;
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.sidebar-nav a:hover {
+    color: white;
+    border-bottom-color: #555;
+    padding-left: 0.5rem;
+}
+
+.sidebar-nav a.active {
+    color: white;
+    font-weight: 500;
+}
+
+/* Footer in sidebar */
+.sidebar-footer {
+    padding: 2rem;
+    border-top: 1px solid #333;
+    margin-top: auto;
+}
+
+.sidebar-footer p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #888;
+    line-height: 1.4;
+}
+
+/* Main content area */
+.main-content {
+    margin-left: 280px;
+    flex: 1;
+    min-height: 100vh;
+    background-color: white;
+}
+
+.content-wrapper {
+    padding: 3rem 4rem;
+    max-width: 1200px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        box-shadow: none;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .content-wrapper {
+        padding: 2rem 1.5rem;
+    }
+
+    .layout-container {
+        flex-direction: column;
+    }
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .sidebar {
+        width: 250px;
+    }
+
+    .main-content {
+        margin-left: 250px;
+    }
+
+    .content-wrapper {
+        padding: 2.5rem 3rem;
+    }
+}
+
+/* Smooth transitions */
+.sidebar,
+.sidebar-nav a {
+    transition: all 0.3s ease;
+}
+
+/* Scrollbar styling for sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #2a2a2a;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}

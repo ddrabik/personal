@@ -1,80 +1,163 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>About — David Drabik</title>
-    <meta name="description" content="About David Drabik, software engineer and photographer." />
-    <link rel="canonical" href="https://daviddrabik.com/about.html" />
-    <link type="image/x-icon" rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHklEQVQ4T2NkYGD4z0ABYBw1gGE0DBhGw4BhWIQBAE5OEAELnjVHAAAAAElFTkSuQmCC" />
-    <!-- Open Graph / Facebook -->
-    <meta property="og:site_name" content="David Drabik" />
-    <meta property="og:title" content="About — David Drabik" />
-    <meta property="og:url" content="https://daviddrabik.com/about.html" />
-    <meta property="og:type" content="website" />
-    <meta property="og:description" content="About David Drabik, software engineer and photographer." />
-    <meta property="og:image" content="https://images.squarespace-cdn.com/content/v1/51d0ddf8e4b02caa00406976/1393544608326-CFRA5B466Q03TP3J6FQO/Profile-huge.jpg" />
-    <!-- Twitter -->
-    <meta name="twitter:title" content="About — David Drabik" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:description" content="About David Drabik, software engineer and photographer." />
-    <meta name="twitter:image" content="https://images.squarespace-cdn.com/content/v1/51d0ddf8e4b02caa00406976/1393544608326-CFRA5B466Q03TP3J6FQO/Profile-huge.jpg" />
-    <link rel="stylesheet" href="../styles.css" />
-    <style>
-      .profile-img {
-        max-width: 300px;
-        border-radius: 8px;
-        float: left;
-        margin-right: 40px;
-        margin-bottom: 20px;
-      }
-      .about-content p {
-        margin-bottom: 18px;
-      }
-      .about-content a {
-        color: #0070f3;
-        text-decoration: underline;
-      }
-    </style>
-  </head>
-  <body>
-    <main class="main">
-      <section class="about">
-        <header>
-          <h1>About</h1>
-        </header>
-        <img class="profile-img" src="https://images.squarespace-cdn.com/content/v1/51d0ddf8e4b02caa00406976/1393544608326-CFRA5B466Q03TP3J6FQO/Profile-huge.jpg" alt="David Drabik profile" />
-        <div class="about-content">
-          <p>
-            My journey as a software engineer began in high school, self-taught through online resources, and extended into my time at UC San Diego. There, I engaged in various projects, from
-            university department websites to mobile applications for local nonprofits, and interned in Sydney, applying software engineering to solve real-world problems.
-          </p>
-          <p>
-            At Intuit, I leveraged AngularJS and Java to develop web applications enhancing security and productivity, streamlining authentication policies and API development processes. After Intuit,
-            at Raise, I advanced our technology and team capabilities, from developing apps that broadened our market presence to leading the adoption of modern engineering practices like continuous
-            development and GraphQL architecture. My focus on mentorship and process optimization significantly reduced onboarding times and strengthened our engineering culture.
-          </p>
-          <p>
-            At Brex, I led transformative projects that enabled global financial transactions and streamlined accounting processes, significantly reducing FX fees and simplifying reimbursements for
-            enterprise customers. My efforts to improve reliability through SLO Dashboards improved both customer and team on call experiences. Complementing these technical achievements, I focused on
-            mentorship and team growth, enhancing our engineering capabilities through documentation, tool enhancements, and fostering a culture of operational excellence and continuous learning.
-          </p>
-          <p>
-            Outside of work, I enjoy spending time with my wife and my hobbies, such as
-            <a href="http://instagram.com/ddrabik/" target="_blank" rel="noopener">nature and wildlife photography</a>, pottery, and
-            <a href="https://www.instagram.com/wafflesandchip/" target="_blank" rel="noopener">cooking</a>.
-          </p>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>About — David Drabik</title>
+        <meta
+            name="description"
+            content="About David Drabik, software engineer and photographer."
+        />
+        <link rel="canonical" href="https://daviddrabik.com/about.html" />
+        <link
+            type="image/x-icon"
+            rel="shortcut icon"
+            href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHklEQVQ4T2NkYGD4z0ABYBw1gGE0DBhGw4BhWIQBAE5OEAELnjVHAAAAAElFTkSuQmCC"
+        />
+        <!-- Open Graph / Facebook -->
+        <meta property="og:site_name" content="David Drabik" />
+        <meta property="og:title" content="About — David Drabik" />
+        <meta property="og:url" content="https://daviddrabik.com/about.html" />
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:description"
+            content="About David Drabik, software engineer and photographer."
+        />
+        <meta
+            property="og:image"
+            content="https://images.squarespace-cdn.com/content/v1/51d0ddf8e4b02caa00406976/1393544608326-CFRA5B466Q03TP3J6FQO/Profile-huge.jpg"
+        />
+        <!-- Twitter -->
+        <meta name="twitter:title" content="About — David Drabik" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:description"
+            content="About David Drabik, software engineer and photographer."
+        />
+        <meta
+            name="twitter:image"
+            content="https://images.squarespace-cdn.com/content/v1/51d0ddf8e4b02caa00406976/1393544608326-CFRA5B466Q03TP3J6FQO/Profile-huge.jpg"
+        />
+        <link rel="stylesheet" href="../styles.css" />
+        <link rel="stylesheet" href="../css/sidebar-layout.css" />
+        <style>
+            .profile-img {
+                max-width: 300px;
+                border-radius: 8px;
+                float: left;
+                margin-right: 40px;
+                margin-bottom: 20px;
+            }
+            .about-content p {
+                margin-bottom: 18px;
+            }
+            .about-content a {
+                color: #0070f3;
+                text-decoration: underline;
+            }
+            .about section {
+                margin-bottom: 2rem;
+            }
+            .about header h1 {
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+                color: #333;
+                font-weight: 300;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="layout-container">
+            <sidebar class="sidebar">
+                <div class="sidebar-content">
+                    <div class="sidebar-logo">
+                        <h1>David Drabik</h1>
+                    </div>
+                    <nav class="sidebar-nav">
+                        <ul>
+                            <li>
+                                <a href="../index.html">Portfolio</a>
+                            </li>
+                            <li>
+                                <a href="about.html" class="active">About</a>
+                            </li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </sidebar>
+            <main class="main-content">
+                <div class="content-wrapper">
+                    <section class="about">
+                        <header>
+                            <h1>About</h1>
+                        </header>
+                        <img
+                            class="profile-img"
+                            src="https://images.squarespace-cdn.com/content/v1/51d0ddf8e4b02caa00406976/1393544608326-CFRA5B466Q03TP3J6FQO/Profile-huge.jpg"
+                            alt="David Drabik profile"
+                        />
+                        <div class="about-content">
+                            <p>
+                                My journey as a software engineer began in high
+                                school, self-taught through online resources,
+                                and extended into my time at UC San Diego.
+                                There, I engaged in various projects, from
+                                university department websites to mobile
+                                applications for local nonprofits, and interned
+                                in Sydney, applying software engineering to
+                                solve real-world problems.
+                            </p>
+                            <p>
+                                At Intuit, I leveraged AngularJS and Java to
+                                develop web applications enhancing security and
+                                productivity, streamlining authentication
+                                policies and API development processes. After
+                                Intuit, at Raise, I advanced our technology and
+                                team capabilities, from developing apps that
+                                broadened our market presence to leading the
+                                adoption of modern engineering practices like
+                                continuous development and GraphQL architecture.
+                                My focus on mentorship and process optimization
+                                significantly reduced onboarding times and
+                                strengthened our engineering culture.
+                            </p>
+                            <p>
+                                At Brex, I led transformative projects that
+                                enabled global financial transactions and
+                                streamlined accounting processes, significantly
+                                reducing FX fees and simplifying reimbursements
+                                for enterprise customers. My efforts to improve
+                                reliability through SLO Dashboards improved both
+                                customer and team on call experiences.
+                                Complementing these technical achievements, I
+                                focused on mentorship and team growth, enhancing
+                                our engineering capabilities through
+                                documentation, tool enhancements, and fostering
+                                a culture of operational excellence and
+                                continuous learning.
+                            </p>
+                            <p>
+                                Outside of work, I enjoy spending time with my
+                                wife and my hobbies, such as
+                                <a
+                                    href="http://instagram.com/ddrabik/"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >nature and wildlife photography</a
+                                >, pottery, and
+                                <a
+                                    href="https://www.instagram.com/wafflesandchip/"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >cooking</a
+                                >.
+                            </p>
+                        </div>
+                    </section>
+                </div>
+            </main>
         </div>
-      </section>
-    </main>
-    <footer class="footer">
-      David Drabik
-      <nav class="nav">
-        <li><a href="../index.html">Portfolio</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </nav>
-    </footer>
-  </body>
+    </body>
 </html>

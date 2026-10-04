@@ -73,9 +73,14 @@
                         rel="noopener"
                         >Instagram <span aria-hidden="true">↗</span></a
                     >
-                    <a href="mailto:david@daviddrabik.com"
+                    <!-- The CDN rewrites any address it finds into a link that
+                         only works once a script of its own has loaded, and
+                         adds that script to the page. email_off stops it. -->
+                    <!--email_off-->
+                    <a href="mailto:contact@daviddrabik.com"
                         >Email <span aria-hidden="true">↗</span></a
                     >
+                    <!--/email_off-->
                 </div>
             </section>
         </main>

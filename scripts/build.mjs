@@ -251,6 +251,8 @@ async function build() {
         {
             collapseWhitespace: true,
             removeComments: true,
+            // The CDN reads these two to leave the email link alone.
+            ignoreCustomComments: [/^\/?email_off$/],
             removeAttributeQuotes: true,
             collapseBooleanAttributes: true,
             sortAttributes: true,

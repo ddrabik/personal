@@ -40,8 +40,9 @@ The page is built to arrive in the first round trip after the handshake:
 
 - The stylesheet, script, and icon are inlined, so the document is the only
   request before the photographs. System fonts; nothing else is fetched.
-- The build fails if the compressed document passes 13 kB, which is what fits
-  in a server's initial ten-packet window.
+- The build fails if the compressed document passes 13 kB. A server's initial
+  ten-packet window carries about 14.6 kB, and the response headers take the
+  rest.
 - Photographs are served from the same origin, so they reuse the document's
   connection instead of opening one to S3.
 - The first photograph is fetched at high priority, the rest of the first
@@ -52,8 +53,10 @@ The page is built to arrive in the first round trip after the handshake:
 ## Deployment
 
 DigitalOcean App Platform builds and publishes `main` on every push. The app's
-static site component must run `npm run build` and publish `dist`;
-[`.do/app.yaml`](.do/app.yaml) records that spec.
+static site component must use the Node.js buildpack, which runs the `build`
+script, and publish `dist`. [`.do/app.yaml`](.do/app.yaml) records that spec;
+App Platform does not read it on push, so a change to it has to be applied with
+`doctl apps update <app-id> --spec .do/app.yaml` or in the dashboard.
 
 ## License
 

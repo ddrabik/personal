@@ -340,12 +340,14 @@ if (lightbox) {
         image.style.opacity = "0";
 
         window.setTimeout(() => {
+            switching = false;
+            // Closed mid-slide: opening the next one would reopen the dialog.
+            if (!lightbox.open) return;
             image.style.transition = "none";
             open(next);
             void image.offsetWidth;
             ease();
             image.style.opacity = "";
-            switching = false;
         }, SLIDE_MS);
     };
 
@@ -372,6 +374,8 @@ if (lightbox) {
         // lands. A neighbour reached by swiping may not have scrolled into view
         // yet, in which case its lazy preview has no currentSrc.
         image.src = preview?.currentSrc || preview?.src || "";
+        // The ratio sizes the photograph's box before either file has loaded.
+        image.style.setProperty("--r", frame.style.getPropertyValue("--r"));
         image.alt = preview?.alt ?? "";
         loading.hidden = false;
 
@@ -407,6 +411,11 @@ if (lightbox) {
             open(frame);
         });
     }
+
+    // A click on the backdrop lands on the dialog itself.
+    lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) lightbox.close();
+    });
 
     lightbox.addEventListener("close", () => {
         resetZoom();

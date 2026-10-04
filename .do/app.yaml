@@ -6,5 +6,4 @@ static_sites:
     branch: main
     deploy_on_push: true
   environment_slug: node-js
-  build_command: npm run build
   output_dir: dist

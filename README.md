@@ -53,8 +53,9 @@ The page is built to arrive in the first round trip after the handshake:
 ## Deployment
 
 DigitalOcean App Platform builds and publishes `main` on every push. The app's
-static site component must have the build command `npm run build` and the
-output directory `dist`. [`.do/app.yaml`](.do/app.yaml) records that spec;
+static site component must have the build command `bash scripts/do-build.sh`
+and the output directory `dist`. That script fetches Node when the build
+container has none, then runs the build. [`.do/app.yaml`](.do/app.yaml) records that spec;
 App Platform does not read it on push, so a change to it has to be applied with
 `doctl apps update <app-id> --spec .do/app.yaml` or in the dashboard.
 

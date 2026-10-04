@@ -1,3 +1,15 @@
+## Repository layout
+
+- **Published site**: `src/` holds the page, its stylesheet and script, and
+  `photos.json`; `static/` is copied as is. `npm run build` writes `dist/`,
+  which is what DigitalOcean publishes. See `README.md`.
+- **Photographs are never committed.** The build fetches the originals from S3
+  and writes derivatives to `dist/i/`. Add one by adding an entry to
+  `src/photos.json`.
+- **The page must stay inside its byte budget.** The build fails if the
+  compressed document passes 13 kB, because past that it no longer arrives in
+  the first round trip. Do not raise the budget to make a change fit.
+
 ## Agent skills
 
 ### Issue tracker

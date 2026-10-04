@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
+        <meta name="color-scheme" content="dark" />
+        <meta name="theme-color" content="#0a0b0c" />
+        <meta
+            name="description"
+            content="Landscape and bird photography by David Drabik."
+        />
+        <title>David Drabik — Landscape and wildlife photographer</title>
+        <link rel="canonical" href="https://daviddrabik.com/" />
+        <!-- The build inlines the icon, the stylesheet, and the script, so
+             the document is the only request before the photographs. -->
+        <link rel="icon" href="{{icon}}" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <style>
+            {{css}}
+        </style>
+    </head>
+    <body>
+        <a class="skip-link" href="#work">Skip to photographs</a>
+
+        <div class="progress" aria-hidden="true"><span data-progress></span></div>
+
+        <header class="site-header">
+            <a class="wordmark" href="#top" aria-label="David Drabik, home">
+                <span>David</span>
+                <span>Drabik</span>
+            </a>
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+            </nav>
+        </header>
+
+        <main id="top">
+            <!-- Generated from photos.json by scripts/build.mjs. -->
+            <section class="mosaic" id="work" aria-label="Selected photographs">
+                {{photos}}
+            </section>
+
+            <section class="about" id="about" aria-labelledby="about-title">
+                <h1 id="about-title">David Drabik</h1>
+
+                <dl class="about-facts">
+                    <div>
+                        <dt>Photographing since</dt>
+                        <dd>2012, starting with an iPhone.</dd>
+                    </div>
+                    <div>
+                        <dt>Favorite subjects</dt>
+                        <dd>Landscapes and birds.</dd>
+                    </div>
+                    <div>
+                        <dt>Cameras</dt>
+                        <dd>Nikon D3400 first, then the D5600 and D810.</dd>
+                    </div>
+                    <div>
+                        <dt>Lenses</dt>
+                        <dd>Mostly zooms: 200–500mm and 70–300mm.</dd>
+                    </div>
+                </dl>
+
+                <div class="about-links">
+                    <a
+                        href="https://instagram.com/ddrabik/"
+                        target="_blank"
+                        rel="noopener"
+                        >Instagram <span aria-hidden="true">↗</span></a
+                    >
+                    <a href="mailto:david@daviddrabik.com"
+                        >Email <span aria-hidden="true">↗</span></a
+                    >
+                </div>
+            </section>
+        </main>
+
+        <dialog class="lightbox" data-lightbox aria-label="Photograph">
+            <form method="dialog">
+                <button class="dialog-close" aria-label="Close image">
+                    Close ×
+                </button>
+            </form>
+            <!--
+                The zoomer is the pinch and swipe surface. touch-action: none
+                hands every touch gesture to the pointer handlers in site.js
+                so the browser does not scroll or page-zoom underneath them.
+            -->
+            <div class="lightbox-visual" data-zoomer>
+                <img alt="" data-lightbox-image draggable="false" />
+                <p class="lightbox-loading" data-lightbox-loading>Loading…</p>
+                <p class="lightbox-hint" data-zoom-hint aria-hidden="true">
+                    Swipe for the next · pinch to zoom
+                </p>
+            </div>
+            <!--
+                One line, and only when there is something true to say: the
+                place for a landscape, the species for wildlife. Hidden
+                otherwise.
+            -->
+            <p class="lightbox-caption" data-lightbox-caption hidden></p>
+        </dialog>
+
+        <script type="module">
+            {{js}}
+        </script>
+    </body>
+</html>

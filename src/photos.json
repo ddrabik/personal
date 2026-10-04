@@ -1,0 +1,94 @@
+{
+    "origin": "https://s3.us-east-1.amazonaws.com/daviddrabik.com/images/",
+    "rows": [
+        [
+            {
+                "id": "shark-fin",
+                "key": "landscapes/_DSC1720.jpg",
+                "alt": "Shark Fin Cove under a soft pink and blue sunset",
+                "caption": "Shark Fin Cove, Davenport, California"
+            }
+        ],
+        [
+            {
+                "id": "hummingbird",
+                "key": "birds/_DSC3650.jpg",
+                "alt": "A small hummingbird with an iridescent magenta throat on a bare branch",
+                "caption": "Hummingbird"
+            },
+            {
+                "id": "tropical-birds",
+                "key": "birds/_DSC9293.jpg",
+                "alt": "Two bright tropical birds perched together in green foliage"
+            }
+        ],
+        [
+            {
+                "id": "zion",
+                "key": "landscapes/_DSC3328.jpg",
+                "alt": "Zion's red canyon walls catching the first warm light of sunrise",
+                "caption": "Zion National Park"
+            }
+        ],
+        [
+            {
+                "id": "hawaii-sunset",
+                "key": "landscapes/DSC_0002.jpg",
+                "alt": "A palm tree silhouetted against a deep orange Hawaiian sunset",
+                "caption": "Hawai‘i"
+            },
+            {
+                "id": "young-owls",
+                "key": "birds/_DSC7413.jpg",
+                "alt": "Two young great horned owls perched together on a branch",
+                "caption": "Great horned owls"
+            }
+        ],
+        [
+            {
+                "id": "tahoe",
+                "key": "landscapes/_DSC9681.jpg",
+                "alt": "Lake Tahoe stretching toward snow-capped mountains",
+                "caption": "Lake Tahoe"
+            }
+        ],
+        [
+            {
+                "id": "wave",
+                "key": "landscapes/_DSC7798.jpg",
+                "alt": "A blue wave folding into white spray",
+                "caption": "California coast"
+            }
+        ],
+        [
+            {
+                "id": "yosemite",
+                "key": "landscapes/_DSC4585.jpg",
+                "alt": "Half Dome and Yosemite Valley layered with winter snow",
+                "caption": "Yosemite National Park"
+            }
+        ],
+        [
+            {
+                "id": "sea-turtle",
+                "key": "animals/_DSC2252.jpg",
+                "alt": "A sea turtle resting low on black volcanic sand",
+                "caption": "Sea turtle"
+            }
+        ],
+        [
+            {
+                "id": "burrowing-owl",
+                "key": "birds/_DSC5499.jpg",
+                "alt": "A burrowing owl looking directly toward the camera",
+                "caption": "Burrowing owl"
+            },
+            {
+                "id": "great-horned-owl",
+                "key": "birds/_DSC5686.jpg",
+                "alt": "A great horned owl on a branch, looking straight at the camera through green leaves",
+                "caption": "Great horned owl"
+            }
+        ]
+    ]
+}

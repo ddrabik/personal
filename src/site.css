@@ -1,0 +1,472 @@
+/*
+    A justified mosaic for David Drabik's photography portfolio.
+    The build inlines this file into the document.
+*/
+
+:root {
+    --surface: #0a0b0c;
+    --surface-raised: #131416;
+    --ink: #f4f2ef;
+    --ink-dim: rgba(244, 242, 239, 0.62);
+    --ink-faint: rgba(244, 242, 239, 0.34);
+    --rule: rgba(244, 242, 239, 0.14);
+    --radius: 5px;
+    --shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+    --sans: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+        sans-serif;
+    --serif: ui-serif, Georgia, "Times New Roman", serif;
+    --gutter: clamp(1.25rem, 4vw, 3.5rem);
+    --mosaic-gap: 6px;
+    /* The height a wide-screen row aims for before it stretches to justify. */
+    --row-height: 19rem;
+    --wordmark-size: clamp(0.82rem, 1.5vw, 0.95rem);
+    /* The fixed header's height, worked out rather than measured so the
+       mosaic never shifts after the first paint: its padding plus the two
+       lines of the wordmark. */
+    --header-height: calc(
+        2rem + env(safe-area-inset-top, 0px) + 2 * 0.92 * var(--wordmark-size)
+    );
+    color-scheme: dark;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: var(--surface);
+}
+
+body {
+    margin: 0;
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.skip-link {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 60;
+    padding: 0.6rem 0.9rem;
+    border-radius: 6px;
+    background: var(--surface-raised);
+    color: var(--ink);
+    font-size: 0.8rem;
+    text-decoration: none;
+    transform: translateY(-160%);
+}
+
+.skip-link:focus-visible {
+    transform: translateY(0);
+}
+
+/* ---------- Header: leaves on the way down, returns on the way up ---------- */
+
+.site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: calc(1rem + env(safe-area-inset-top)) var(--gutter) 1rem;
+    background: rgba(10, 11, 12, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 260ms ease;
+}
+
+body[data-header="hidden"] .site-header {
+    transform: translateY(-100%);
+}
+
+.site-header:focus-within {
+    transform: none;
+}
+
+/* The mosaic starts below the fixed header. */
+main {
+    padding-top: var(--header-height);
+}
+
+/* ---------- Thin progress line ---------- */
+
+.progress {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 50;
+    height: 2px;
+    pointer-events: none;
+}
+
+.progress span {
+    display: block;
+    height: 100%;
+    background: var(--ink);
+    opacity: 0.7;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 120ms linear;
+}
+
+.wordmark {
+    display: grid;
+    line-height: 0.92;
+    font-size: var(--wordmark-size);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.site-nav {
+    display: flex;
+    gap: clamp(1.25rem, 2.5vw, 2.25rem);
+}
+
+.site-nav a {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    opacity: 0.85;
+}
+
+/* ---------- The mosaic ----------
+
+   Justified rows. Each photograph's flex-grow is its aspect ratio, so the
+   widths in a row come out proportional to the ratios and every photograph in
+   that row lands on the same height, uncropped.
+
+   On a phone the rows are authored: a wide landscape alone, tall and square
+   photographs in pairs. On a wide screen the row wrappers dissolve and the
+   photographs wrap freely toward --row-height.
+*/
+
+.mosaic {
+    display: flex;
+    flex-direction: column;
+    gap: var(--mosaic-gap);
+    padding: 0 var(--mosaic-gap);
+}
+
+.row {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--mosaic-gap);
+}
+
+.photo {
+    display: block;
+    flex: var(--r) 1 0%;
+    min-width: 0;
+    cursor: zoom-in;
+}
+
+.photo img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    /* The photograph's own dominant colour holds its place until it lands. */
+    background: var(--c, var(--surface-raised));
+}
+
+@media (min-width: 48rem) {
+    .mosaic {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        max-width: 100rem;
+        margin-inline: auto;
+        --mosaic-gap: 10px;
+        padding-inline: var(--gutter);
+    }
+
+    .row {
+        display: contents;
+    }
+
+    /* Soaks up the space left in the last row, so a short final row keeps
+       --row-height instead of stretching one or two photographs to fill it. */
+    .mosaic::after {
+        content: "";
+        flex: 999 1 0%;
+    }
+
+    .photo {
+        flex-basis: calc(var(--r) * var(--row-height));
+    }
+}
+
+/* ---------- About ---------- */
+
+.about {
+    padding: clamp(4rem, 12vh, 8rem) var(--gutter) clamp(4rem, 10vh, 7rem);
+    display: grid;
+    gap: 2rem;
+    max-width: 44rem;
+    margin-inline: auto;
+}
+
+.about h1 {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.9rem, 4.2vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+}
+
+.about-facts {
+    display: grid;
+    gap: 1.5rem;
+    border-top: 1px solid var(--rule);
+    padding-top: 1.75rem;
+    margin: 0;
+}
+
+@media (min-width: 40rem) {
+    .about-facts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.about-facts dt {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.5rem;
+}
+
+.about-facts dd {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--ink-dim);
+}
+
+.about-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    border-top: 1px solid var(--rule);
+    padding-top: 1.75rem;
+}
+
+.about-links a {
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.3rem;
+}
+
+.about-links a:hover,
+.about-links a:focus-visible {
+    border-color: var(--ink);
+}
+
+/* ---------- Lightbox ---------- */
+
+.lightbox {
+    width: min(96vw, 1400px);
+    max-width: none;
+    max-height: 94svh;
+    border: 0;
+    padding: 0;
+    border-radius: var(--radius);
+    background: var(--surface-raised);
+    color: var(--ink);
+    overflow: hidden;
+}
+
+.lightbox::backdrop {
+    background: rgba(4, 5, 6, 0.92);
+}
+
+/*
+    The pinch surface. touch-action: none hands every touch gesture to the
+    pointer handlers rather than letting the browser scroll or page-zoom, which
+    is what makes two-finger spread scale the photograph instead of the page.
+*/
+.lightbox-visual {
+    position: relative;
+    display: grid;
+    place-items: center;
+    background: #000;
+    min-height: 40svh;
+    overflow: hidden;
+    touch-action: none;
+    overscroll-behavior: contain;
+}
+
+.lightbox-visual img {
+    max-height: 76svh;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    transform-origin: 0 0;
+    will-change: transform;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.lightbox-visual[data-zoomed="true"] {
+    cursor: grab;
+}
+
+.lightbox-loading {
+    position: absolute;
+    margin: 0;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+}
+
+.lightbox-loading[hidden] {
+    display: none;
+}
+
+/* Shown for a moment on touch, then fades. */
+.lightbox-hint {
+    position: absolute;
+    bottom: 0.9rem;
+    margin: 0;
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    background: rgba(10, 11, 12, 0.72);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 400ms ease;
+}
+
+.lightbox-hint[data-visible="true"] {
+    opacity: 1;
+}
+
+.lightbox-caption {
+    margin: 0;
+    padding: 1rem var(--gutter) 1.2rem;
+    text-align: center;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+}
+
+.lightbox-caption[hidden] {
+    display: none;
+}
+
+.dialog-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 5;
+    border: 0;
+    border-radius: 999px;
+    padding: 0.5rem 0.9rem;
+    background: rgba(10, 11, 12, 0.78);
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+@media (max-width: 48rem) {
+    /* ---------- Opened view: full screen, and zoomable ---------- */
+
+    .lightbox {
+        width: 100vw;
+        max-width: 100vw;
+        height: 100dvh;
+        max-height: 100dvh;
+        margin: 0;
+        border-radius: 0;
+        background: #000;
+    }
+
+    /* Scoped to [open]: a bare display value would defeat the UA's display:none. */
+    .lightbox[open] {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .lightbox-visual {
+        flex: 1 1 auto;
+        min-height: 0;
+        max-height: none;
+    }
+
+    .lightbox-visual img {
+        max-height: 100%;
+        max-width: 100%;
+    }
+
+    .lightbox-caption {
+        flex: 0 0 auto;
+        padding: 0.9rem var(--gutter) calc(0.9rem + env(safe-area-inset-bottom));
+    }
+
+    .dialog-close {
+        top: calc(0.75rem + env(safe-area-inset-top));
+    }
+}
+
+
+/* ---------- Focus ----------
+
+   A hairline in the ink colour instead of the browser's blue ring, shown only
+   for keyboard focus. A tap or click leaves nothing behind.
+*/
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+:focus {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 1px solid var(--ink-dim);
+    outline-offset: 3px;
+}
+
+.photo {
+    border-radius: var(--radius);
+}
+
+/* ---------- Motion comfort ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .site-header,
+    .progress span,
+    .lightbox-hint {
+        transition: none;
+    }
+}

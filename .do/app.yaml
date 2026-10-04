@@ -5,5 +5,6 @@ static_sites:
     repo: ddrabik/personal
     branch: main
     deploy_on_push: true
-  build_command: bash scripts/do-build.sh
+  environment_slug: node-js
+  build_command: npm run build
   output_dir: dist
